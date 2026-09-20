@@ -1,0 +1,34 @@
+# Pipeline scratch
+tasks/**/screenshots/
+output/
+
+# Claude Code local overrides — never commit these
+.claude/settings.local.json
+.claude/worktrees/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins*
+*.g.dart.orig
+
+# Env & secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store

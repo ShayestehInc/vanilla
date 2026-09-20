@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+#
+# Refuse to push a branch that was eligible for local CI certification but
+# is not certified.
+#
+# Why this exists: documenting the cheap lane in CLAUDE.md is not enough. In
+# the project this boilerplate came from, the lane was documented for two weeks
+# and still skipped on a third of eligible PRs, at ~100 cloud runner-minutes
+# each. Same lesson as scripts/check_code_size.py: a rule nobody measures is a
+# rule nobody follows, so measure it at the moment the mistake happens.
+#
+# Install (once per clone):  scripts/install-git-hooks.sh
+#
+# Override, for the rare real case:
+#     LOCAL_CI_OVERRIDE="<reason>" git push ...
+# The reason is printed and is expected in the PR description.
+set -uo pipefail
+
+repo_root="$(git rev-parse --show-toplevel)"
+policy="${repo_root}/scripts/local-ci-change-policy.sh"
+[ -f "$policy" ] || exit 0
+
+remote_name="${1:-origin}"
+TRUNKS="${LOCAL_CI_TRUNKS:-main master staging}"
+# {{CUSTOMIZE}} — paths that actually carry testable code in this repo. A
+# docs-only push can never satisfy the gate, so it must not be blocked by it.
+CODE_PATHS="${LOCAL_CI_CODE_PATHS:-^(backend|frontend|src|lib|app|packages|scripts)/}"
+
+# Read the refs being pushed from stdin: <local ref> <local sha> <remote ref> <remote sha>
+while read -r local_ref local_sha remote_ref remote_sha; do
+    # Branch deletions carry the all-zero local sha.
+    case "$local_sha" in *[!0]*) ;; *) continue ;; esac
+    case "$local_ref" in refs/heads/*) ;; *) continue ;; esac
+
+    branch="${local_ref#refs/heads/}"
+    # Never gate the trunks themselves; promotes are merges, not new work.
+    skip=0
+    for t in $TRUNKS; do [ "$branch" = "$t" ] && skip=1; done
+    [ "$skip" -eq 1 ] && continue
+
+    base=""
+    for t in $TRUNKS; do
+        if git rev-parse --verify --quiet "origin/$t" >/dev/null; then base="origin/$t"; break; fi
+    done
+    [ -z "$base" ] && continue
+
+    if ! bash "$policy" "$base" "$local_sha" >/dev/null 2>&1; then
+        continue          # not eligible — cloud CI is correct, allow the push
+    fi
+
+    if ! git diff --name-only "$(git merge-base "$base" "$local_sha")" "$local_sha" \
+         | grep -qE "$CODE_PATHS"; then
+        continue          # docs-only: nothing to certify
+    fi
+
+    if [ -n "${LOCAL_CI_OVERRIDE:-}" ]; then
+        echo "pre-push: local-CI certification skipped on purpose."
+        echo "          reason: ${LOCAL_CI_OVERRIDE}"
+        echo "          Put that reason in the PR description."
+        continue
+    fi
+
+    state="$(gh api "repos/{owner}/{repo}/commits/${local_sha}/status" \
+                 --jq '.statuses[] | select(.context=="local/fast-ci") | .state' \
+             2>/dev/null | head -1)"
+    [ "$state" = "success" ] && continue
+
+    cat >&2 <<MSG
+
+  ✖ pre-push blocked: ${branch} is eligible for local CI certification
+    but ${local_sha:0:12} carries no successful local/fast-ci status.
+
+    Certify and push in one step:
+
+      scripts/local-ci-certify.sh --push
+
+    Preconditions it checks: branch rebased on current ${base},
+    worktree clean including untracked files.
+
+    If you genuinely need cloud CI for this push:
+
+      LOCAL_CI_OVERRIDE="why" git push ${remote_name} ${branch}
+
+MSG
+    exit 1
+done
+
+exit 0
