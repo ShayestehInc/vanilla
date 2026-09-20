@@ -69,7 +69,7 @@ One codebase scan, two outputs."
    | B     | 5     | ultrareview           | tasks/next-ticket.md, tasks/dev-done.md, changed files             |                                     |
    | B     | 6     | ultrafix              | tasks/review-findings.md                                           |                                     |
    | C     | 7     | ultraqa               | tasks/next-ticket.md, tasks/dev-done.md                            | Runs BEFORE UX                      |
-   | C     | 8     | ultraux               | tasks/next-ticket.md, tasks/ui-design.md, tasks/qa-report.md       | **Conditional** — only if the diff touches frontend/ |
+   | C     | 8     | ultraux               | tasks/next-ticket.md, tasks/ui-design.md, tasks/qa-report.md       | **Conditional** — only if the diff touches client code |
    | D     | 9     | ultrasecurity         | tasks/dev-done.md, changed files                                   | **Parallel with 10**                |
    | D     | 10    | ultraarch             | tasks/dev-done.md, PRODUCT_SPEC.md                                 | **Parallel with 9**                 |
    | E     | 11    | ultrahacker           | tasks/dev-done.md, all UI files                                    | **Conditional** — interactive UI touched, or complexity high |
