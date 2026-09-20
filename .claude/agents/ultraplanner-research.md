@@ -56,6 +56,16 @@ Add a `## Complexity` field to the ticket. Classify based on:
 ## Feature Type
 
 [frontend-only | backend-only | full-stack]
+
+## Platform
+
+[web | mobile | both]
+
+Picks the test harness and the review lens — see the platform table in
+`CLAUDE.md`. `mobile` and `both` additionally require: offline/flaky-network
+behaviour, background/resume, permission-denied paths, and the device matrix in
+`docs/stacks/ACTIVE.md`. `both` means a shipped client that does not upgrade in
+lockstep, so any API path/method/payload/enum change is breaking — say so.
 Determines which pipeline stages run at full depth vs. lightweight.
 
 ## User Story
@@ -239,7 +249,8 @@ For EVERY state the UI can be in:
 5. Think like a user when writing UX requirements
 6. Think like a hacker when writing edge cases
 7. Every ticket should be implementable by a developer who has never seen the codebase
-8. Always classify Feature Type — the pipeline uses this to skip/lighten irrelevant stages
+8. Always classify Feature Type AND Platform — the pipeline uses both to skip/lighten
+   irrelevant stages and to pick the right test harness
 9. Always classify Complexity — the pipeline uses this for tier routing
 10. Use Grep and Glob extensively to find all relevant code
 11. Prioritize findings by relevance to the implementation task

@@ -66,7 +66,7 @@ Every interactive component must have:
 - Color: Never the sole indicator (add icon or text)
 
 ### Consistency
-- Spacing: 4px grid (Tailwind spacing scale)
+- Spacing: 4px grid (the profile's spacing scale)
 - Typography: Consistent use of text-xs through text-4xl
 - Colors: Semantic tokens (not raw hex/rgb)
 - Patterns: Same action = same component everywhere
@@ -145,8 +145,9 @@ The UX stage runs AFTER QA (Stage 7). Changing UI text, labels, or structure can
 
 1. **Fix, don't just report** — implement every fix you can
 2. **Never break functionality** — run tests after changes
-3. **Never replace shadcn components** — enhance with className overrides
-4. **Tailwind only** — no CSS modules
+3. **Never replace the library's components** — enhance them (wrappers, style
+   overrides) rather than forking
+4. **One styling system** — the one named in `docs/stacks/ACTIVE.md`, no second
 5. **Mobile-first** — if it doesn't work on 375px, it's broken
 6. **Consistency over novelty** — match existing patterns
 7. **Subtle over flashy** — Linear/Vercel aesthetic, not Dribbble

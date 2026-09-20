@@ -55,15 +55,17 @@ Your job: Review ALL changed files against the ticket, find every issue, and wri
 - [ ] **Unbounded queries**: All list endpoints paginated?
 - [ ] **Missing indexes**: Frequently filtered fields indexed?
 - [ ] **Memory**: No loading entire tables into memory?
-- [ ] **Async**: Slow operations in Celery, not request/response?
+- [ ] **Async**: Slow / third-party operations on the background queue, not in
+      the request/response cycle?
 
 ### Reliability
 
 - [ ] **Error handling**: All external calls have try/except with specific exceptions?
 - [ ] **Race conditions**: Concurrent requests handled? Database constraints?
 - [ ] **Timeouts**: External API calls have timeouts?
-- [ ] **Retries**: Celery tasks have retry logic?
-- [ ] **Validation**: All input validated at boundary? DRF serializers used?
+- [ ] **Retries**: background jobs have retry logic and are idempotent?
+- [ ] **Validation**: all input validated at the boundary by the stack's
+      serializer/schema layer?
 
 ### Code Quality
 

@@ -13,7 +13,7 @@ worked, so use it as the reference when writing a new one.
 | Server tests      | `backend/apps/<app>/tests/test_*.py`   |
 | Client unit tests | `frontend/src/**/*.test.tsx` (jest)    |
 | E2E tests         | `frontend/e2e/*.spec.ts` (Playwright)  |
-| Scope helpers     | `backend/apps/users/assignments.py`    |
+| Scope helpers     | `backend/apps/users/scoping.py`        |
 
 ## Test commands
 
@@ -74,12 +74,16 @@ check, and still performs the model-vs-migration drift check the gate is for.
 
 ```bash
 ISOLATION_ROOT=backend/ \
-ISOLATION_MIXIN=ClientIsolationMixin \
-ISOLATION_ACTOR_MIXIN=RepAssignmentIsolationMixin \
-ISOLATION_TENANT_FK=client \
-ISOLATION_SCOPED_BASES=ClientScopedModel,CampaignScopedModel \
+ISOLATION_MIXIN=TenantIsolationMixin \
+ISOLATION_ACTOR_MIXIN=ActorScopeMixin \
+ISOLATION_TENANT_FK=tenant \
+ISOLATION_SCOPED_BASES=TenantScopedModel,WorkspaceScopedModel \
   python3 scripts/check_isolation.py
 ```
+
+Those are the gate's defaults, so the block is only needed if your project names
+the mixin or FK differently. Whatever you choose, the names here, in
+`CLAUDE.md`'s ISOLATION AXES, and in the code must be the same three names.
 
 ## Third-party providers
 

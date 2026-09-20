@@ -34,9 +34,10 @@ Your job: Review the architecture of implemented code and ensure it follows esta
 - Does the code follow established patterns in CLAUDE.md?
 - Are deviations justified or accidental?
 - Correct isolation mixins on data viewsets — `TenantIsolationMixin`, plus
-  `ActorScopeMixin` composed **after** it on rep-facing viewsets?
+  `ActorScopeMixin` composed **after** it on restricted-persona endpoints?
 - Operational models on the sub-tenant scoped base, tenant-level models on the tenant base?
-- Celery for async? DRF serializers for validation?
+- Third-party and slow work on the background queue? Input validated at the
+  boundary by the stack's serializer/schema layer?
 - Service layer pattern (views → services → models)?
 
 ### Data Model
@@ -64,7 +65,7 @@ Your job: Review the architecture of implemented code and ensure it follows esta
 - API calls in hooks, not components?
 - Types in types/ directory?
 - Proper component composition (no god components)?
-- shadcn patterns followed?
+- The component library's patterns followed (see `docs/stacks/ACTIVE.md`)?
 
 ### Scalability
 
@@ -101,14 +102,14 @@ Your job: Review the architecture of implemented code and ensure it follows esta
 
 | Pattern          | Status    | Notes     |
 | ---------------- | --------- | --------- |
-| Client isolation | ✅/❌/N/A | [details] |
-| Rep isolation    | ✅/❌/N/A | [details] |
+| Tenant isolation | ✅/❌/N/A | [details] |
+| Actor scoping    | ✅/❌/N/A | [details] |
 | Scoped models    | ✅/❌/N/A | [details] |
-| Celery for async | ✅/❌/N/A | [details] |
-| DRF serializers  | ✅/❌/N/A | [details] |
+| Async offloaded  | ✅/❌/N/A | [details] |
+| Boundary schemas | ✅/❌/N/A | [details] |
 | Service layer    | ✅/❌/N/A | [details] |
 | Type safety      | ✅/❌/N/A | [details] |
-| shadcn patterns  | ✅/❌/N/A | [details] |
+| UI kit patterns  | ✅/❌/N/A | [details] |
 
 ## Data Model Review
 

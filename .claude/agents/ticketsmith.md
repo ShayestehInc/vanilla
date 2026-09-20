@@ -101,8 +101,9 @@ Follow `tasks/templates/ticket.md` when it fits; otherwise this structure:
 **Priority:** Critical / High / Medium / Low — <justification>
 **Complexity:** low / medium / high — <justification, per CLAUDE.md criteria>
 **Feature Type:** frontend-only | backend-only | full-stack
+**Platform:** web | mobile | both — <harness + extra lens, per CLAUDE.md>
 **Suggested tier:** Trivial / Quick / Standard / Full Cycle — <why, using the risk-based routing rules>
-**Risk surfaces touched:** <isolation / auth / billing / desktop-contract / sensitive fields / none>
+**Risk surfaces touched:** <tenant isolation / actor scope / auth / billing / published client contract / sensitive fields / none>
 
 ## User Story
 

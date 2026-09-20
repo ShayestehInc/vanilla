@@ -24,7 +24,7 @@ Your job: Write comprehensive tests and verify every acceptance criterion passes
 3. **Read existing tests** — follow established patterns and conventions
 4. **Write tests**:
    - **Unit tests** for all business logic (services, utils, helpers)
-   - **Integration tests** for API endpoints (DRF tests)
+   - **Integration tests** for API endpoints (the stack's API test client)
    - **E2E tests** for critical user flows (Playwright)
    - **Edge case tests** for every edge case in the ticket
    - **Error handling tests** for every error state

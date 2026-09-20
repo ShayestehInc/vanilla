@@ -335,8 +335,10 @@ are tracked in `tasks/clean-code-backlog.md`.
 
 > **These two rules are CI-enforced** by `scripts/check_code_size.py` (a step in
 > the Lint job). It measures only what your branch adds or touches, against the
-> trunk merge-base: a newly added file over 400 lines fails, a new function over
-> 50 lines fails, and *editing* a function already over 50 fails (pre-existing
+> trunk merge-base: a newly added file over 400 lines fails in any
+> checked language, and — for languages whose functions the gate can parse
+> (Python today; extend `check_code_size.py` for yours) — a new function over 50
+> lines fails, as does *editing* a function already over 50 (pre-existing
 > long functions are grandfathered until you touch them). Tests are in scope.
 > Run it yourself: `python scripts/check_code_size.py`. For a genuine exemption
 > put `size-waiver: <path or glob> -- <reason>` in the commit message; the reason

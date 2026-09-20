@@ -20,8 +20,8 @@ Exactly one rule, chosen because it can be decided correctly from the AST:
     unscoped: it would serve every tenant's rows to every request.
 
 The model is read from `queryset = Lead.objects...` or from the django-stubs
-generic parameter (`ModelViewSet[Message]`) -- 22 of the backend's 23
-ModelViewSet-family classes resolve a model this way. A model counts as
+generic parameter (`ModelViewSet[Message]`); in the codebase this was written
+for, all but one ModelViewSet-family class resolved a model one of those two ways. A model counts as
 tenant-scoped when it inherits a scoped base model, or
 declares the tenant ForeignKey. A viewset counts as isolated when it composes
 the isolation mixin directly or inherits a project class that does, resolved
@@ -29,8 +29,8 @@ to a fixpoint across the backend.
 
 Deliberately NOT checked, and you should know the holes:
 
-- **`get_queryset` overrides.** 16 viewsets scope by hand. Whether that scoping
-  is *correct* is not decidable from the AST -- the real-world scoping bug this gate was written after was
+- **`get_queryset` overrides.** Plenty of viewsets scope by hand. Whether that
+  scoping is *correct* is not decidable from the AST -- the real-world scoping bug this gate was written after was
   a wrong `get_queryset`, not a missing one. This gate defers to the override and
   catches only what it can decide with certainty. Reviewing override bodies
   remains a human/agent job; this script does not make Review redundant, it makes

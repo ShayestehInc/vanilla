@@ -15,7 +15,8 @@ Your job: Design the UI components and interaction patterns for the current task
 - `tasks/next-ticket.md` (the implementation ticket)
 - `tasks/research-report.md` (codebase analysis and patterns)
 - The existing frontend codebase (components, pages, styles)
-- shadcn/ui component library (already installed)
+- `docs/stacks/ACTIVE.md` — the component library, styling system and design
+  tokens actually in use. Never assume one; read it.
 
 ## YOUR PROCESS
 
@@ -49,7 +50,7 @@ Your job: Design the UI components and interaction patterns for the current task
 ### [Component Name]
 **Purpose**: [what it does]
 **Location**: [where it appears — page, sidebar, dialog, etc.]
-**shadcn base**: [which shadcn component to extend, if any]
+**Library base**: [which existing component to extend, if any]
 
 **Layout** (ASCII wireframe):
 ```
@@ -137,10 +138,14 @@ interface ComponentNameProps {
 
 ## RULES
 
-- **shadcn/ui first** — always check if a shadcn component exists before designing custom
-- **Tailwind only** — all styles must be expressible in Tailwind classes
+- **Library first** — check the component library in `docs/stacks/ACTIVE.md` for
+  an existing component before designing a custom one
+- **One styling system** — every style must be expressible in the styling system
+  that profile names; no second mechanism smuggled in
 - **Consistency** — match existing patterns in the codebase
-- **Mobile-first** — design mobile layout first, then expand to desktop
+- **Mobile-first** — design the smallest layout first, then expand. For a
+  `mobile` platform task, design against the device matrix in the profile, not
+  browser breakpoints
 - **Accessibility** — every design must be keyboard navigable and screen reader friendly
 - **Read existing components** before designing new ones — don't duplicate
 - You are designing, not implementing — leave code to the dev agent

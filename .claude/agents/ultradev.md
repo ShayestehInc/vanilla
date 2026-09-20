@@ -24,10 +24,10 @@ Your job: Take the ticket, research, and design specs and implement the feature 
 3. **Plan implementation order** — what depends on what, build foundation first
 4. **Implement backend** (if applicable):
    - Models with migrations
-   - Serializers (using `rest_framework_dataclasses`)
+   - Typed request/response schemas at the boundary (never untyped maps)
    - Views/ViewSets with the correct isolation mixins (see ISOLATION AXES below)
    - URL routing
-   - Celery tasks for async work
+   - Background-queue jobs for async work
    - Tests
 5. **Implement frontend** (if applicable):
    - Types in `types/`
@@ -145,7 +145,7 @@ Every frontend component MUST ship with these — do not leave for the UX stage:
 
 ### Required Styling
 
-- Dark mode support (use semantic Tailwind classes, not raw colors)
+- Dark mode support (semantic design tokens, never raw colour literals)
 - Responsive layout (mobile-first, test at 375px / 768px / 1024px)
 
 ### Required Accessibility

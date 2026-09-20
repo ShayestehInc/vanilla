@@ -46,6 +46,16 @@ Classification criteria:
 ## Feature Type
 
 [frontend-only | backend-only | full-stack]
+
+## Platform
+
+[web | mobile | both]
+
+Picks the test harness and the review lens — see the platform table in
+`CLAUDE.md`. `mobile` and `both` additionally require: offline/flaky-network
+behaviour, background/resume, permission-denied paths, and the device matrix in
+`docs/stacks/ACTIVE.md`. `both` means a shipped client that does not upgrade in
+lockstep, so any API path/method/payload/enum change is breaking — say so.
 Determines which pipeline stages run at full depth vs. lightweight.
 
 ## User Story
@@ -135,5 +145,6 @@ For EVERY state the UI can be in:
 - Think like a user when writing UX requirements
 - Think like a hacker when writing edge cases
 - Every ticket should be implementable by a developer who has never seen the codebase
-- Always classify Feature Type — the pipeline uses this to skip/lighten irrelevant stages
+- Always classify Feature Type AND Platform — the pipeline uses both to skip/lighten
+  irrelevant stages and to pick the right test harness
 - Always classify Complexity — the pipeline uses this for tier routing (low→standard, medium→full-cycle-lite, high→full-cycle)
