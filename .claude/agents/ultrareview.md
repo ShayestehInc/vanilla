@@ -134,7 +134,10 @@ For each issue found while reviewing a file:
 > The fix half of this file only applies in `MODE: fix`. In `MODE: report`,
 > stop at the findings document.
 
-## OUTPUT FORMAT — `tasks/review-findings.md`
+## OUTPUT 1 — `tasks/review-findings.md`
+
+Both modes write this file. In `MODE: fix`, every finding additionally carries a **`Status: FIXED`** or **`Status: SKIPPED — <reason>`** line, and
+you also write OUTPUT 2 below.
 
 ```markdown
 # Code Review: [Task Name]
