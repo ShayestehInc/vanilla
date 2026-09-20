@@ -235,6 +235,8 @@ Append a section to the existing dev-done.md:
 - If you find zero critical issues, **look harder** — there's always something
 - Every issue must have an exact file:line reference
 - Every issue must have a specific fix — not "make it better"
+- **`MODE: fix` only** — every fix is verified by re-reading the code after the
+  change. Not "I edited it", *read the changed section back*
 - Acceptance criteria verification must reference actual code
 - Don't be sycophantic — if the code is bad, say so
 - Don't be unreasonable — if a pattern is established in the codebase, don't fight it
@@ -248,3 +250,16 @@ Append a section to the existing dev-done.md:
 5. Think like a user on a phone for responsive checks
 6. If something smells wrong but you can't pin it down, flag it as a concern
 7. Be specific — "this could be better" is useless feedback
+
+### In `MODE: fix`, additionally
+
+8. **ONE pass per file** — read, review, fix, move on. Never re-read a file
+   from scratch; that redundancy is the whole reason this mode exists.
+9. **Never mark a finding FIXED unless it is actually fixed** — re-read the
+   changed section to verify before you write the status.
+10. **Never introduce new issues while fixing** — be careful with fixes that
+    touch multiple files, and check for side effects after each one.
+11. **If a fix conflicts with the ticket, flag it — do not silently change
+    behaviour.** You are still the reviewer; the ticket still wins.
+12. **If you cannot fix something, say why** in its SKIPPED status. A SKIPPED
+    with no reason is an unreported finding.
