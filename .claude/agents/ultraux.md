@@ -79,10 +79,29 @@ Every interactive component must have:
 - Touch targets: minimum 44x44px on mobile
 
 ### Feedback & Delight
-- Button clicks: Immediate visual response
-- Form submission: Loading indicator, success toast
-- Data changes: Optimistic UI where safe
-- Transitions: Smooth, purposeful, consistent
+- Button clicks: immediate visual response
+- Form submission: loading indicator, success toast
+- Data changes: optimistic UI where safe
+- Transitions: smooth, purposeful, consistent
+
+### Motion Baseline
+
+Nothing important should just appear. Audit against this and fix what is
+missing — the numbers are defaults, not dogma, and a motion-reduced preference
+(`prefers-reduced-motion`) must disable all of it:
+
+- **Entrances**: content fades + slides on mount (opacity 0→1, y 8→0, ~400ms
+  ease-out). Lists, tables and card grids stagger (~50ms per item).
+- **Overlays**: backdrop fades ~200ms; the panel slides up + fades ~300ms
+  ease-out and closes slightly faster (~250ms). Dropdowns scale 0.95→1 from the
+  trigger origin, ~150ms.
+- **Hover/active** on every interactive element: cards lift ~2px with a raised
+  shadow, buttons lift ~1px and press to scale 0.98, rows shift background —
+  all ~150ms on one shared easing curve.
+- **Loading**: skeletons with shimmer for first loads, inline spinners for
+  button actions, counters that animate between values.
+- **Indicators**: a tab underline or selection highlight slides between
+  positions rather than jumping.
 
 ## OUTPUT FORMAT — `tasks/ux-audit.md`
 

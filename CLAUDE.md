@@ -93,8 +93,8 @@ uncertain, state the risk and use the full lane.
 
 | #   | Stage     | Agent           | Skill        | Artifact                           | Description                                                 |
 | --- | --------- | --------------- | ------------ | ---------------------------------- | ----------------------------------------------------------- |
-| 1   | Plan      | `ultraplanner`  | `/plan`      | `tasks/next-ticket.md`             | Product planning, ticket, acceptance criteria, feature type |
-| 2   | Research  | `ultraresearch` | `/research`  | `tasks/research-report.md`         | Codebase analysis, pattern discovery, dependency research   |
+| 1   | Plan      | `ultraplanner`  | `/plan`      | `tasks/next-ticket.md`             | Product planning, ticket, acceptance criteria, feature type, platform |
+| 2   | Research  | `ultraplanner`  | `/research`  | `tasks/research-report.md`         | Codebase analysis, pattern discovery, dependency research   |
 | 3   | UI Design | `ultradesign`   | `/ui-design` | `tasks/ui-design.md`               | Component design, interaction patterns, wireframes          |
 | 4   | Dev       | `ultradev`      | `/dev`       | `tasks/dev-done.md` + code         | Full implementation — production-ready, zero TODOs          |
 | 5   | Review    | `ultrareview`   | `/review`    | `tasks/review-findings.md`         | Adversarial code review, line-by-line, security check       |
@@ -107,6 +107,21 @@ uncertain, state the risk and use the full lane.
 | 12  | Verify    | `ultraverify`   | `/verify`    | `tasks/ship-decision.md`           | Final gate — all tests pass, SHIP/NO-SHIP verdict           |
 
 Stages 9 and 10 are independent of each other — run them in parallel.
+
+**Stages are checkpoints, not agent boundaries.** Two agents serve two stages
+each, deliberately, because the second stage would otherwise re-read everything
+the first just read:
+
+- `ultraplanner` covers stages 1–2 in one codebase scan. `/plan` and
+  `/research` invoke it with `SCOPE: ticket-only` / `SCOPE: research-only` when
+  only one artifact is wanted.
+- `ultrareview` covers stage 5, and stages 5+6 together when invoked with
+  `MODE: fix` (which is what `/standard`'s ReviewFix stage does). `ultrafix`
+  remains a separate agent for the `/quick` tier, where review and fix are
+  genuinely separate passes.
+
+The state file still records the stage numbers above, so `/from` and resume
+work unchanged.
 
 ## Utility Commands
 
@@ -121,7 +136,6 @@ Stages 9 and 10 are independent of each other — run them in parallel.
 | `/abort`        | Gracefully stop the running pipeline, save state                      |
 | `/commit`       | Smart git commit — groups changes by logic, separate commits          |
 | `/ticket`       | Write an implementation-ready ticket (never implements it)            |
-| `/impeccable`   | Deep frontend design/polish pass                                      |
 
 ## Pipeline State Tracking
 

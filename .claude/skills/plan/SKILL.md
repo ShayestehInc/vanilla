@@ -1,6 +1,6 @@
 ---
 name: plan
-description: "Run only the planning stage (Stage 1). Launches the ultraplanner agent to create a detailed implementation ticket with acceptance criteria, edge cases, and UX requirements."
+description: "Run only the planning stage (Stage 1). Launches the ultraplanner agent (SCOPE: ticket-only) to create a detailed implementation ticket with acceptance criteria, edge cases, and UX requirements."
 ---
 
 # Plan Stage (Stage 1)
@@ -18,6 +18,7 @@ Run the ultraplanner agent to create a comprehensive implementation ticket.
    Task(
      subagent_type="ultraplanner",
      prompt="You are running Stage 1 (Plan) of the pipeline.
+   SCOPE: ticket-only
 
    Task: [task description from BUILD_PLAN.md or user request]
 

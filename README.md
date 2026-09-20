@@ -11,8 +11,8 @@ agents read it.
 
 ```
 CLAUDE.md                  the orchestrator contract — read this first
-.claude/agents/            16 specialised agents (one per stage, + polish + ticketsmith)
-.claude/skills/            22 slash commands that drive them
+.claude/agents/            12 agents — one per pipeline job, no duplicates
+.claude/skills/            21 slash commands that drive them
 .claude/rules/             always-on coding rules
 .claude/hooks/             file-size guardrail wired into Write/Edit
 .claude/settings.json      hook wiring + lint-on-save
@@ -27,6 +27,19 @@ scripts/local-ci-change-policy.sh  fail-closed eligibility for that cheap lane
 docs/stacks/                       stack profiles; ACTIVE.md is the one in force
 tasks/                             pipeline artifacts + tickets live here
 ```
+
+### Why 12 agents and not 16
+
+Two agents cover two stages each, because the second stage would otherwise
+re-read everything the first just read: `ultraplanner` writes the ticket and the
+research report in one codebase scan (`SCOPE: ticket-only` / `research-only`
+when you want just one), and `ultrareview` reviews, or reviews-and-fixes in a
+single pass with `MODE: fix`. The alternative — shipping separate
+`ultraplanner-research` and `ultrareviewfix` files — means the same checklist
+exists twice and drifts.
+
+For deep visual design work, install a dedicated design skill (Anthropic's
+`frontend-design`, or the `impeccable` plugin) rather than vendoring one here.
 
 ## The idea worth keeping
 
@@ -75,7 +88,7 @@ python3 scripts/pipeline_status.py --check
 ## Daily use
 
 ```
-/ticket "reps can see other reps' calls on the dashboard"   # spec it
+/ticket "users can see other users' records on the dashboard"   # spec it
 /quick        # bug fix or low-risk change with a ticket
 /standard     # a medium feature
 /full-cycle   # a new system, or anything high-risk

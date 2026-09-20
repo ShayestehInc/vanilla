@@ -1,6 +1,6 @@
 ---
-name: git commit
-description: Use this skill when I asked for a commit
+name: commit
+description: "Smart git commit — reads the working tree, groups the changes by the logic they implement, and makes one commit per logical change rather than one big commit. Use when the user asks for a commit."
 ---
 Commit instruction:
 1. Check if any files added and needed to be goes to .gitignore file, if you found any, ask me to keep it or move it to ignore file

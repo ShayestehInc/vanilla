@@ -33,7 +33,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
    Task: [task name]
    Tier: standard
    Stage: 1
-   Agent: ultraplanner-research
+   Agent: ultraplanner
    Last Updated: [now]
    Notes: Starting standard pipeline
    ```
@@ -42,10 +42,10 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
 
    | Stage            | Agent                 | Artifact                                                 | Notes                                                    |
    | ---------------- | --------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-   | S1: PlanResearch | ultraplanner-research | `tasks/next-ticket.md` + `tasks/research-report.md`      | Combined planning + research                             |
+   | S1: PlanResearch | ultraplanner | `tasks/next-ticket.md` + `tasks/research-report.md`      | Combined planning + research                             |
    | S2: UI Design    | ultradesign           | `tasks/ui-design.md`                                     | **Skip if backend-only** (read Feature Type from ticket) |
    | S3: Dev          | ultradev              | code + `tasks/dev-done.md`                               | Full implementation                                      |
-   | S4: ReviewFix    | ultrareviewfix        | `tasks/review-findings.md` + updated `tasks/dev-done.md` | Combined review + fix in single pass                     |
+   | S4: ReviewFix    | ultrareview        | `tasks/review-findings.md` + updated `tasks/dev-done.md` | Combined review + fix in single pass                     |
    | S5: QA           | ultraqa               | tests + `tasks/qa-report.md`                             | Quality gate — tests must pass                           |
 
 5. **Stage prompts**:
@@ -54,7 +54,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
 
    ```
    Task(
-     subagent_type="ultraplanner-research",
+     subagent_type="ultraplanner",
      prompt="Standard pipeline — S1 (PlanResearch).
    Read BUILD_PLAN.md for the task: [task description].
    Read PRODUCT_SPEC.md for product context.
@@ -93,8 +93,9 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
 
    ```
    Task(
-     subagent_type="ultrareviewfix",
+     subagent_type="ultrareview",
      prompt="Standard pipeline — S4 (ReviewFix).
+   MODE: fix
    Read tasks/next-ticket.md and tasks/dev-done.md.
    Review all changed files — find issues AND fix them in the same pass.
    Write findings to tasks/review-findings.md.

@@ -25,16 +25,16 @@ Run the autonomous pipeline for the current or next task. Auto-classifies comple
    Task: [task name]
    Tier: full-cycle
    Stage: 1
-   Agent: ultraplanner-research
+   Agent: ultraplanner
    Last Updated: [now]
    Notes: Starting full cycle
    ```
 
-3b. **Stage 1+2 — Combined PlanResearch**: Launch `ultraplanner-research` agent (replaces separate planner + researcher):
+3b. **Stage 1+2 — Combined PlanResearch**: Launch `ultraplanner` agent (replaces separate planner + researcher):
 
 ```
 Task(
-  subagent_type="ultraplanner-research",
+  subagent_type="ultraplanner",
   prompt="Full-cycle pipeline — Stage 1+2 (PlanResearch).
 Read BUILD_PLAN.md for the task: [task description].
 Read PRODUCT_SPEC.md for product context.
@@ -63,7 +63,7 @@ One codebase scan, two outputs."
 
    | Block | Stage | Agent                 | Prompt includes                                                    | Notes                               |
    | ----- | ----- | --------------------- | ------------------------------------------------------------------ | ----------------------------------- |
-   | A     | 1+2   | ultraplanner-research | Task description, PRODUCT_SPEC.md context                          | Combined plan+research (done in 3b) |
+   | A     | 1+2   | ultraplanner | Task description, PRODUCT_SPEC.md context                          | Combined plan+research (done in 3b) |
    | A     | 3     | ultradesign           | tasks/next-ticket.md, tasks/research-report.md                     | **Conditional** — only if the task adds/restructures UI |
    | B     | 4     | ultradev              | tasks/next-ticket.md, tasks/research-report.md, tasks/ui-design.md |                                     |
    | B     | 5     | ultrareview           | tasks/next-ticket.md, tasks/dev-done.md, changed files             |                                     |

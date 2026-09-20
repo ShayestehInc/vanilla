@@ -17,9 +17,9 @@ Resume or start the pipeline from a specific stage, running through to the final
 
 | Name          | Stage # | Agent                 |
 | ------------- | ------- | --------------------- |
-| plan-research | 1+2     | ultraplanner-research |
-| plan          | 1       | ultraplanner          |
-| research      | 2       | ultraresearch         |
+| plan-research | 1+2     | ultraplanner          |
+| plan          | 1       | ultraplanner (SCOPE: ticket-only)   |
+| research      | 2       | ultraplanner (SCOPE: research-only) |
 | ui-design     | 3       | ultradesign           |
 | dev           | 4       | ultradev              |
 | review        | 5       | ultrareview           |
@@ -35,10 +35,10 @@ Resume or start the pipeline from a specific stage, running through to the final
 
 | Name          | Stage # | Agent                 |
 | ------------- | ------- | --------------------- |
-| plan-research | S1      | ultraplanner-research |
+| plan-research | S1      | ultraplanner          |
 | ui-design     | S2      | ultradesign           |
 | dev           | S3      | ultradev              |
-| reviewfix     | S4      | ultrareviewfix        |
+| reviewfix     | S4      | ultrareview (MODE: fix) |
 | qa            | S5      | ultraqa               |
 
 ### Quick Tier
