@@ -19,6 +19,7 @@ CLAUDE.md                  the orchestrator contract — read this first
 scripts/check_code_size.py         400-line file / 50-line function gate
 scripts/check_known_failures.py    every failing test needs an owner and an expiry
 scripts/check_isolation.py         AST gate: no unscoped multi-tenant endpoint
+scripts/check_agent_refs.py        no skill or doc may name an agent that doesn't exist
 scripts/pipeline_status.py         /status, with --check validation of the state file
 scripts/archive_artifacts.py       archive one run's artifacts
 scripts/local-ci-certify.sh        run CI locally, publish a commit status
