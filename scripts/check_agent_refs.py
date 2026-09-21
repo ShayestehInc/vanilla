@@ -19,13 +19,17 @@ What it checks
 1. Every ``.claude/agents/*.md`` declares a ``name:`` matching its filename,
    and every ``.claude/skills/*/SKILL.md`` a ``name:`` matching its directory.
    A mismatch makes the agent or skill unreachable by the name people type.
-2. Every ``subagent_type="X"`` in a tracked file resolves to a real agent.
+2. Every ``subagent_type=`` reference in a tracked file resolves to a real agent.
 3. Every ``.claude/agents/<name>.md`` path reference resolves to a real file.
 
 Deliberately NOT checked: bare prose mentions of an agent name with no path and
 no ``subagent_type=`` (too many false positives in tickets), and anything under
 the history paths below -- an archived report should say what was true when it
 was written, not what is true now.
+
+Note it scans ``git ls-files``, so a file you have not committed yet is invisible
+to it. A local run before the commit can pass and CI still fail; that is exactly
+how this script first failed on itself, on an example in this docstring.
 
 Usage:
     python3 scripts/check_agent_refs.py
