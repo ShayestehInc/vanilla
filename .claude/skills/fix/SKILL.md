@@ -9,10 +9,8 @@ Run the ultrafix agent to resolve all review findings.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/review-findings.md` for all issues to fix
-   - Read `tasks/next-ticket.md` for original requirements context
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
 2. **Launch the ultrafix agent** via the Task tool:
    ```

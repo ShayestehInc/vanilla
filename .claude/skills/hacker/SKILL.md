@@ -9,10 +9,8 @@ Run the ultrahacker agent for chaos testing and bug hunting.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/dev-done.md` for what was implemented
-   - Read `tasks/next-ticket.md` for feature context
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
 2. **Launch the ultrahacker agent** via the Task tool:
    ```

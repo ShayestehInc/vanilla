@@ -9,10 +9,8 @@ Run the ultradesign agent for UI/UX design specifications.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/next-ticket.md` for UX requirements
-   - Read `tasks/research-report.md` for codebase context
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
 2. **Launch the ultradesign agent** via the Task tool:
    ```

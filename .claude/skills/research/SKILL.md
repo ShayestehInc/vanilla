@@ -9,9 +9,8 @@ Run the ultraplanner agent in research-only scope for comprehensive codebase and
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/next-ticket.md` for the implementation ticket
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
 2. **Launch the ultraplanner agent** via the Task tool:
    ```

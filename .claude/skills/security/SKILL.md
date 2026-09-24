@@ -9,9 +9,8 @@ Run the ultrasecurity agent for comprehensive security audit.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/dev-done.md` for list of changed files
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
 2. **Launch the ultrasecurity agent** via the Task tool:
    ```

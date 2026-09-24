@@ -9,9 +9,8 @@ Run the ultraverify agent for the final ship/no-ship decision.
 
 ## Steps
 
-1. **Read inputs**:
-   - All task artifact files (next-ticket.md through hacker-report.md)
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
 2. **Launch the ultraverify agent** via the Task tool:
    ```
