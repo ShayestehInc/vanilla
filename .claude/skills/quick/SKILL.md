@@ -21,7 +21,7 @@ Run a minimal 3-stage loop for fast iteration.
 
 2. **Run Stage 4 (Dev)**: Launch the ultradev agent
    ```
-   Task(
+   Agent(
      subagent_type="ultradev",
      prompt="Quick pipeline — Stage 4 (Dev).
    Read tasks/next-ticket.md. Implement the feature completely.
@@ -32,7 +32,7 @@ Run a minimal 3-stage loop for fast iteration.
 
 3. **Run Stage 5 (Review)**: Launch the ultrareview agent
    ```
-   Task(
+   Agent(
      subagent_type="ultrareview",
      prompt="Quick pipeline — Stage 5 (Review).
    Read tasks/next-ticket.md and tasks/dev-done.md.
@@ -43,7 +43,7 @@ Run a minimal 3-stage loop for fast iteration.
 
 4. **Run Stage 6 (Fix)**: Launch the ultrafix agent
    ```
-   Task(
+   Agent(
      subagent_type="ultrafix",
      prompt="Quick pipeline — Stage 6 (Fix).
    Read tasks/review-findings.md. Fix all critical and major issues.

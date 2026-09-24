@@ -33,7 +33,7 @@ Run the autonomous pipeline for the current or next task. Auto-classifies comple
 3b. **Stage 1+2 — Combined PlanResearch**: Launch `ultraplanner` agent (replaces separate planner + researcher):
 
 ```
-Task(
+Agent(
   subagent_type="ultraplanner",
   prompt="Full-cycle pipeline — Stage 1+2 (PlanResearch).
 Read BUILD_PLAN.md for the task: [task description].
@@ -61,7 +61,7 @@ One codebase scan, two outputs."
 - `backend-only` → Skip UI Design (3) and UX (8). Run other stages at full depth.
 - `full-stack` → All stages at full depth (default).
 
-4. **Run stages in order** (for medium/high complexity), using the Task tool to launch each agent:
+4. **Run stages in order** (for medium/high complexity), using the Agent tool to launch each agent:
 
    | Block | Stage | Agent                 | Prompt includes                                                    | Notes                               |
    | ----- | ----- | --------------------- | ------------------------------------------------------------------ | ----------------------------------- |
@@ -84,7 +84,7 @@ One codebase scan, two outputs."
    Never skip a stage on a risk-sensitive surface, and never because the run
    feels long.
 
-   **Parallel execution (Block D)**: Launch Stages 9 and 10 as two Task tool calls in the SAME message. Wait for both to complete, then git commit both results together.
+   **Parallel execution (Block D)**: Launch Stages 9 and 10 as two Agent tool calls in the SAME message. Wait for both to complete, then git commit both results together.
 
    **Note**: Review+Fix (stages 5+6) stay SEPARATE for medium/high complexity — better audit trail for complex tasks.
 

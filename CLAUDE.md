@@ -192,10 +192,10 @@ python scripts/archive_artifacts.py --slug <kebab-case-run-name>
 
 ## Agent Orchestration
 
-Each stage delegates to its specialized agent via the Task tool:
+Each stage delegates to its specialized agent via the Agent tool:
 
 ```
-Task(subagent_type="<agent-name>", prompt="<stage instructions + context>")
+Agent(subagent_type="<agent-name>", prompt="<stage instructions + context>")
 ```
 
 **Pass to every agent:** the current task description (from

@@ -12,9 +12,9 @@ Run the ultraverify agent for the final ship/no-ship decision.
 1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
    stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultraverify agent** via the Task tool:
+2. **Launch the ultraverify agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultraverify",
      prompt="You are running Stage 12 (Verify) of the pipeline — the final gate.
 

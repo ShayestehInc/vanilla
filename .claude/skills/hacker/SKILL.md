@@ -12,9 +12,9 @@ Run the ultrahacker agent for chaos testing and bug hunting.
 1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
    stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultrahacker agent** via the Task tool:
+2. **Launch the ultrahacker agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultrahacker",
      prompt="You are running Stage 11 (Hacker) of the pipeline.
 

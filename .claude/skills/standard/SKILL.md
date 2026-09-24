@@ -53,7 +53,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
    **S1 — PlanResearch**:
 
    ```
-   Task(
+   Agent(
      subagent_type="ultraplanner",
      prompt="Standard pipeline — S1 (PlanResearch).
    Read BUILD_PLAN.md for the task: [task description].
@@ -68,7 +68,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
    **S2 — UI Design** (skip if backend-only):
 
    ```
-   Task(
+   Agent(
      subagent_type="ultradesign",
      prompt="Standard pipeline — S2 (UI Design).
    Read tasks/next-ticket.md and tasks/research-report.md.
@@ -80,7 +80,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
    **S3 — Dev**:
 
    ```
-   Task(
+   Agent(
      subagent_type="ultradev",
      prompt="Standard pipeline — S3 (Dev).
    Read tasks/next-ticket.md, tasks/research-report.md, and tasks/ui-design.md (if exists).
@@ -92,7 +92,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
    **S4 — ReviewFix**:
 
    ```
-   Task(
+   Agent(
      subagent_type="ultrareview",
      prompt="Standard pipeline — S4 (ReviewFix).
    MODE: fix
@@ -106,7 +106,7 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
    **S5 — QA**:
 
    ```
-   Task(
+   Agent(
      subagent_type="ultraqa",
      prompt="Standard pipeline — S5 (QA).
    Read tasks/next-ticket.md and tasks/dev-done.md.

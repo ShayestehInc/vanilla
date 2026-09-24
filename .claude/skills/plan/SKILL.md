@@ -13,9 +13,9 @@ Run the ultraplanner agent to create a comprehensive implementation ticket.
    - Read `BUILD_PLAN.md` to find the current/next task
    - Read `tasks/pipeline-state.md` for context
 
-2. **Launch the ultraplanner agent** via the Task tool:
+2. **Launch the ultraplanner agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultraplanner",
      prompt="You are running Stage 1 (Plan) of the pipeline.
    SCOPE: ticket-only

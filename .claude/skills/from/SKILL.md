@@ -61,7 +61,7 @@ Resume or start the pipeline from a specific stage, running through to the final
 4. **Map to stage number** using the appropriate tier's table
 5. **Update pipeline state** to the starting stage
 6. **Run all stages from N through the final stage** of the tier:
-   - For each stage: launch the corresponding agent via Task tool
+   - For each stage: launch the corresponding agent via Agent tool
    - After each stage: update pipeline-state.md, git commit
    - Pass appropriate artifacts to each agent (see `/full-cycle` or `/standard` for the artifact chain)
 7. **At final stage**: Handle completion as per the tier's rules:

@@ -12,9 +12,9 @@ Run the ultradev agent for full feature implementation.
 1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
    stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultradev agent** via the Task tool:
+2. **Launch the ultradev agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultradev",
      prompt="You are running Stage 4 (Dev) of the pipeline.
 

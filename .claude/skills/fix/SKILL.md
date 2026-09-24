@@ -12,9 +12,9 @@ Run the ultrafix agent to resolve all review findings.
 1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
    stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultrafix agent** via the Task tool:
+2. **Launch the ultrafix agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultrafix",
      prompt="You are running Stage 6 (Fix) of the pipeline.
 
