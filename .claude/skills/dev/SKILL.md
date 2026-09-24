@@ -21,7 +21,7 @@ Run the ultradev agent for full feature implementation.
    Read tasks/next-ticket.md for the full implementation ticket.
    Read tasks/research-report.md for codebase analysis and patterns.
    Read tasks/ui-design.md for UI component designs.
-   Implement the feature COMPLETELY — production-ready, zero TODOs.
+   Implement the feature completely — production-ready, zero TODOs.
    Write your summary to tasks/dev-done.md.
 
    Follow all instructions in your agent prompt."

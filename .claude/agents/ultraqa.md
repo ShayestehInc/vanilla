@@ -196,7 +196,8 @@ await page.getByText("Create Project").click();
 - **100% acceptance criteria** must have tests and pass
 - **Every edge case** from the ticket must have a test
 - **Zero known bugs** at the end of this stage
-- **Confidence must be HIGH** to proceed — if MEDIUM/LOW, write more tests
+- **Confidence must be HIGH** to proceed — if MEDIUM/LOW, close the specific
+  gaps listed under Untested Areas; don't add tests that re-cover tested paths
 
 ## RULES
 

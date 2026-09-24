@@ -21,7 +21,7 @@ Run the ultraux agent for UX audit and polish.
    Read tasks/next-ticket.md for UX requirements.
    Read tasks/ui-design.md for design specifications.
    Audit all UI code for this feature: states, copy, accessibility, consistency, responsiveness.
-   IMPLEMENT fixes — don't just report.
+   Implement fixes — don't just report.
    Run tests after changes.
    Write your audit to tasks/ux-audit.md.
 

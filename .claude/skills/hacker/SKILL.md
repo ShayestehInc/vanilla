@@ -22,7 +22,7 @@ Run the ultrahacker agent for chaos testing and bug hunting.
    Read tasks/next-ticket.md for the feature requirements.
    Hunt for: dead UI, visual bugs, logic bugs, race conditions, missing states.
    Test at 375px and 1024px viewports.
-   FIX what you find — don't just report.
+   Fix what you find — don't just report.
    Suggest product improvements.
    Run tests after fixes.
    Write your report to tasks/hacker-report.md.

@@ -20,7 +20,7 @@ Run the ultrafix agent to resolve all review findings.
 
    Read tasks/review-findings.md for all issues found in code review.
    Read tasks/next-ticket.md for the original ticket context.
-   Fix EVERY critical issue. Fix EVERY major issue. Fix minor issues where reasonable.
+   Fix every critical and major issue. Fix minor issues where reasonable.
    Update tasks/dev-done.md with the fixes applied.
    Run the test suite after all fixes.
 

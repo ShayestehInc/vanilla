@@ -22,7 +22,7 @@ Run the ultrasecurity agent for comprehensive security audit.
    Audit ALL changed files for security vulnerabilities.
    Also scan the ENTIRE codebase for secrets (API keys, tokens, passwords).
    Check: injection, auth/authz, IDOR, data exposure, CORS/CSRF, dependencies, third-party webhook signature validation.
-   FIX all critical and high issues — don't just report.
+   Fix all critical and high issues — don't just report.
    Run tests after fixes.
    Write your audit to tasks/security-audit.md.
 

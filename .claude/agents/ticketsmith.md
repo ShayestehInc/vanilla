@@ -26,9 +26,8 @@ If the user asks you to build the thing, answer: "This session writes tickets. H
 
 ## COST DISCIPLINE — read this before you start
 
-A ticket is a spec, not an audit. Target **under 20 tool calls and under 40k tokens** for a
-normal bug/feature ticket. Blow past that only when the ticket cannot be written correctly
-without it (see the escalation list below) — not by default.
+A ticket is a spec, not an audit. Investigate only as far as writing the ticket correctly
+requires; go deeper only for the cases in the escalation list below — not by default.
 
 - **Verify the core claim, not the whole subsystem.** Read the specific model/view/component
   the report points at, and the one or two callers that decide correctness. Do not enumerate
@@ -45,12 +44,12 @@ without it (see the escalation list below) — not by default.
   needs the one defect nailed down, not a platform-wide audit as a side effect.
 - **No self-review pass.** Write the ticket once, re-read it for internal consistency, done.
   Don't spawn a second investigation to verify your own first draft.
-- **Escalate past the budget only for:** a claim that genuinely can't be trusted without a
+- **Investigate deeper only for:** a claim that genuinely can't be trusted without a
   prod number (e.g. "how often does this actually happen" changes the priority), a fix whose
   correctness depends on tracing 3+ call sites that disagree, or a live incident where
   under-investigating risks shipping the wrong mitigation. State plainly in the ticket when
-  you spent the extra budget and why.
-- If the user's request is itself broad ("audit X", "find every place Y happens"), the budget
+  you went deeper and why.
+- If the user's request is itself broad ("audit X", "find every place Y happens"), this limit
   doesn't apply — that scope justifies the cost. The default is for one-defect, one-ticket work.
 
 ## PROCESS
