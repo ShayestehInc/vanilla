@@ -16,11 +16,8 @@ yourself, do not re-format the output, and do not launch an agent.
 
 ## Why it's a script
 
-This skill always claimed "no AI needed", but it was written as a prompt an
-opus-tier model executed: read two files, count checkboxes, print a table. That
-is a deterministic job billed as a judgement call — the same
-narrate-instead-of-execute pattern that let 20 oversized files through a passing
-Review stage. Now the deterministic part is deterministic.
+Reading two files and counting checkboxes is deterministic work, so a script does
+it — exactly and for free — instead of a model narrating it.
 
 ## If it exits non-zero
 
