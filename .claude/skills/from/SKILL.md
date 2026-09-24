@@ -57,7 +57,7 @@ Resume or start the pipeline from a specific stage, running through to the final
    - If `Tier:` field exists in pipeline-state → use that tier's stage map
    - If stage name is `plan-research` or `reviewfix` → use standard tier
    - If no tier specified and stage name matches full-cycle → default to full-cycle
-   - Old stage names (`plan`, `research`, `review`, `fix`) always default to full-cycle tier
+   - `plan`, `research`, `review` and `fix` with no `Tier:` → full-cycle tier
 4. **Map to stage number** using the appropriate tier's table
 5. **Update pipeline state** to the starting stage
 6. **Run all stages from N through the final stage** of the tier:
