@@ -62,6 +62,8 @@ Resume or start the pipeline from a specific stage, running through to the final
 5. **Update pipeline state** to the starting stage
 6. **Run all stages from N through the final stage** of the tier:
    - For each stage: launch the corresponding agent via Agent tool
+   - Skip any stage the state file's `Notes:` records as skipped (e.g. Stage 11 for
+     `Complexity: medium`), and the conditional stages whose surface isn't touched
    - After each stage: update pipeline-state.md, git commit
    - Pass appropriate artifacts to each agent (see `/full-cycle` or `/standard` for the artifact chain)
 7. **At final stage**: Handle completion as per the tier's rules:
