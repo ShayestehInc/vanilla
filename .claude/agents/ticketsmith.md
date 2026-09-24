@@ -121,7 +121,7 @@ Binary. PASS/FAIL. No gray areas.
 
 ## Edge Cases
 
-At least 5, each with expected behavior.
+Every one that changes behavior, including unhappy paths, each with expected behavior.
 
 ## Error States
 

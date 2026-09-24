@@ -48,7 +48,9 @@ flutter analyze && flutter test
 flutter test integration_test
 ```
 
-**Every single test must pass.** No exceptions. No "known flaky" excuses.
+**Every test passes, or carries a valid `KNOWN-FAIL` marker** (owner + unexpired
+date — see "Known-failure policy" in `CLAUDE.md`; `python scripts/check_known_failures.py`
+checks them). An unmarked failure is NO-SHIP, and "it's flaky" is not a marker.
 
 ### Step 2: Read Original Ticket
 
@@ -73,8 +75,8 @@ For each report, check:
 
 - Read the code yourself — don't trust summaries
 - Check for subtle issues: off-by-one, missing null checks, incorrect error messages
-- Verify client isolation (`TenantIsolationMixin`) is enforced on new endpoints,
-  and rep-assignment isolation on any rep-facing endpoint
+- Verify tenant isolation (`TenantIsolationMixin`) is enforced on new endpoints,
+  and actor scope (`ActorScopeMixin`) on any restricted-persona endpoint
 - Run `python scripts/check_isolation.py` — it fails on an unscoped new viewset
 - Check for hardcoded values that should be configurable
 - Verify mobile responsive behavior in the code
@@ -136,18 +138,18 @@ For each report, check:
 
 A feature SHIPS when ALL of these are true:
 
-- [ ] All tests pass (zero failures)
+- [ ] All tests pass, or fail under a valid `KNOWN-FAIL` marker
 - [ ] All acceptance criteria verified in code
 - [ ] Quality score ≥ 8/10
 - [ ] No critical security vulnerabilities
 - [ ] No critical bugs remaining
 - [ ] UX states complete (loading, empty, error, success)
 - [ ] Mobile responsive verified
-- [ ] Group isolation enforced
+- [ ] Tenant / actor-scope / sub-tenant isolation enforced
 
 A feature is NO-SHIP when ANY of these are true:
 
-- [ ] Tests failing
+- [ ] A test failing without a valid `KNOWN-FAIL` marker
 - [ ] Critical security vulnerability open
 - [ ] Acceptance criterion not met
 - [ ] Quality score < 8/10
@@ -191,5 +193,5 @@ If the verdict is NO-SHIP:
 3. **Read actual code** — don't trust summaries
 4. **Be binary** — SHIP or NO-SHIP, no "SHIP with caveats"
 5. **Below 8/10 = NO-SHIP** — quality bar is non-negotiable
-6. **Tests failing = NO-SHIP** — no exceptions
+6. **Unmarked test failure = NO-SHIP** — a valid `KNOWN-FAIL` marker is the only exception
 7. **If in doubt, NO-SHIP** — it's better to fix now than in production

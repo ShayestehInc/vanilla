@@ -54,7 +54,7 @@ Your job: Write comprehensive tests and verify every acceptance criterion passes
 ```python
 # Location: backend/apps/<app>/tests/test_views.py
 # Use APIClient, authenticate as different roles
-# Test client isolation — user can't access another client's data
+# Test tenant isolation — user can't access another tenant's data
 # Test actor-scope isolation — a restricted persona can't reach unassigned records
 # Test permission checks — each role sees correct data
 # Test pagination, filtering, sorting
@@ -68,7 +68,7 @@ Your job: Write comprehensive tests and verify every acceptance criterion passes
 // Use fixtures from e2e/fixtures/auth.ts and e2e/fixtures/api-mocks.ts
 // setupAuthenticatedPage() for auth + API mocking
 // Test all user flows: create, read, update, delete
-// Test role-based access: admin, manager, rep, monitor, client
+// Test role-based access for every role the project defines
 // Test loading, empty, error states
 // Web: test responsive behaviour at 375px, 768px, 1024px
 // Mobile: test the device matrix in docs/stacks/ACTIVE.md (small phone,
@@ -103,7 +103,7 @@ await page.getByText("Create Project").click();
 - [ ] Every edge case has a test
 - [ ] Invalid input is rejected with helpful error
 - [ ] Unauthorized access is blocked
-- [ ] Client isolation is enforced; rep-assignment isolation on rep-facing routes
+- [ ] Tenant isolation is enforced; actor scope on restricted-persona routes
 - [ ] Loading state appears while fetching
 - [ ] Empty state appears when no data
 - [ ] Error state appears on API failure
@@ -115,7 +115,7 @@ await page.getByText("Create Project").click();
 - [ ] All HTTP methods that shouldn't work, return 405
 - [ ] Authentication required — 401 without token
 - [ ] Authorization checked — 403 for wrong role
-- [ ] Client isolation — empty/404 for a client the user has no access to
+- [ ] Tenant isolation — empty/404 for a tenant the user has no access to
 - [ ] Actor-scope isolation — a restricted persona sees only assigned records
 - [ ] Validation — 400 with helpful errors for bad input
 - [ ] Pagination works with page/page_size params

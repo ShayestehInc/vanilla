@@ -32,11 +32,12 @@ Run the ultraplanner agent to create a comprehensive implementation ticket.
 
 3. **After the agent completes**:
    - Verify `tasks/next-ticket.md` was written
-   - Update `tasks/pipeline-state.md`:
+   - Update `tasks/pipeline-state.md` (keep the existing `Tier:`; the stage
+     is recorded as done by advancing to the next one):
      ```
-     Stage: 1
+     Stage: 2
      Agent: ultraplanner
-     Status: COMPLETE
+     Notes: Stage 1 (Plan) complete — ticket at tasks/next-ticket.md
      ```
    - Git commit: `git add -A && git commit -m "stage 1 (ultraplanner): planning ticket for [task name]"`
 

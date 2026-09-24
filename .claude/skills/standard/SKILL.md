@@ -119,7 +119,6 @@ Run the 5-stage standard pipeline for medium-complexity tasks.
 6. **After each stage**:
    - Update `tasks/pipeline-state.md` with next stage
    - Git commit: `git add -A && git commit -m "stage N (<agent>): <description> [standard]"`
-   - Check context — if running low, save state and STOP
 
 7. **After S5 (QA)**:
    - If QA passes → mark task `[x]` in BUILD_PLAN.md, set pipeline-state to COMPLETE

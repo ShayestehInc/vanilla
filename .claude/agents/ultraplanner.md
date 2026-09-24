@@ -86,7 +86,7 @@ Each criterion is binary — PASS or FAIL. No gray areas.
 
 ## Edge Cases
 
-At least 5 specific edge cases that MUST be handled:
+Every edge case that changes behaviour — including the unhappy paths — each with its expected behaviour:
 
 1. [Edge case + expected behavior]
 2. [Edge case + expected behavior]
@@ -252,7 +252,7 @@ For EVERY state the UI can be in:
 8. Always classify Feature Type AND Platform — the pipeline uses both to skip/lighten
    irrelevant stages and to pick the right test harness
 9. Always classify Complexity — the pipeline uses this for tier routing
-10. Use Grep and Glob extensively to find all relevant code
+10. Search broadly enough that no file the change needs is missed
 11. Prioritize findings by relevance to the implementation task
 12. Be honest about uncertainty — flag assumptions explicitly
 

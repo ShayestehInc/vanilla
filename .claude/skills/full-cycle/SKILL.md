@@ -50,8 +50,10 @@ One codebase scan, two outputs."
 3c. **Auto-Classification** — Read `## Complexity` from `tasks/next-ticket.md`:
 
 - **`low`** → Switch to standard flow. Update pipeline-state `Tier: standard`. Run remaining standard stages (S2-S5): UI Design → Dev → ReviewFix → QA. Then mark complete. No verify gate.
-- **`medium`** → Continue full pipeline but **skip Stage 11 (Hacker)**. Update pipeline-state `Tier: full-cycle (medium)`.
-- **`high`** → Full 12 stages. Update pipeline-state `Tier: full-cycle (high)`.
+- **`medium`** → Continue full pipeline but **skip Stage 11 (Hacker)**. Keep `Tier: full-cycle`; record `Complexity: medium — Stage 11 skipped` in `Notes:`.
+- **`high`** → Full 12 stages. Keep `Tier: full-cycle`; record `Complexity: high` in `Notes:`.
+
+`Tier:` is validated by `scripts/pipeline_status.py --check` and accepts only the bare tier name, so complexity and skipped stages always live in `Notes:` — which is where a resumed run (`/from`, session start) reads them.
 
 3d. **Read Feature Type** from `tasks/next-ticket.md`:
 
@@ -89,7 +91,6 @@ One codebase scan, two outputs."
 5. **After each stage** (or block):
    - Update `tasks/pipeline-state.md` with next stage
    - Git commit: `git add -A && git commit -m "stage N (<agent>): <description>"`
-   - Check context — if running low, save state and STOP
 
 6. **After Stage 12**:
    - **If SHIP** → mark task `[x]` in BUILD_PLAN.md, set pipeline-state to COMPLETE

@@ -29,13 +29,10 @@ Run the ultraverify agent for the final ship/no-ship decision.
    - tasks/architecture-review.md (architecture review)
    - tasks/hacker-report.md (chaos testing)
 
-   Run the COMPLETE test suite. Every test must pass.
+   Run the COMPLETE test suite. Every test must pass or carry a valid KNOWN-FAIL marker (CLAUDE.md).
    Verify every acceptance criterion by reading actual code.
    Check all reports for unresolved issues.
    Write your verdict to tasks/ship-decision.md.
-
-   SHIP criteria: all tests pass, quality >= 8/10, no critical issues, no security vulnerabilities.
-   NO-SHIP criteria: any test failing, quality < 8/10, critical issues open, security vulnerability.
 
    Follow all instructions in your agent prompt."
    )
@@ -45,7 +42,9 @@ Run the ultraverify agent for the final ship/no-ship decision.
    - Read `tasks/ship-decision.md` for the verdict
    - Update `tasks/pipeline-state.md`
    - If **SHIP**: Mark task `[x]` in BUILD_PLAN.md, set pipeline-state to COMPLETE
-   - If **NO-SHIP**: Set pipeline-state to stage 4 for re-iteration
+   - If **NO-SHIP**: Set pipeline-state to the `Restart From Stage` in the
+     `## NO-SHIP Analysis` section, and record its `Run Stages` in `Notes:`
+     (the Smart NO-SHIP Loop in `/full-cycle` runs only those, then Stage 12)
    - Git commit: `git add -A && git commit -m "stage 12 (ultraverify): [SHIP/NO-SHIP] for [task name]"`
 
 4. **Report** the verdict, quality score, and summary to the user.
