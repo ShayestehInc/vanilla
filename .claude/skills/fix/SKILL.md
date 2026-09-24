@@ -9,20 +9,18 @@ Run the ultrafix agent to resolve all review findings.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/review-findings.md` for all issues to fix
-   - Read `tasks/next-ticket.md` for original requirements context
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultrafix agent** via the Task tool:
+2. **Launch the ultrafix agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultrafix",
      prompt="You are running Stage 6 (Fix) of the pipeline.
 
    Read tasks/review-findings.md for all issues found in code review.
    Read tasks/next-ticket.md for the original ticket context.
-   Fix EVERY critical issue. Fix EVERY major issue. Fix minor issues where reasonable.
+   Fix every critical and major issue. Fix minor issues where reasonable.
    Update tasks/dev-done.md with the fixes applied.
    Run the test suite after all fixes.
 

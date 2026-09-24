@@ -49,7 +49,7 @@ Your job: Fix EVERY issue found in the code review.
 - Security fixes: verify the fix actually closes the vulnerability
 
 ### Minor Issues
-- Fix if it takes under 5 minutes
+- Fix unless it is purely stylistic churn or widens the diff beyond the ticket
 - Group related minor fixes together
 - Don't introduce unnecessary churn for purely stylistic issues
 

@@ -33,7 +33,7 @@ Run the autonomous pipeline for the current or next task. Auto-classifies comple
 3b. **Stage 1+2 — Combined PlanResearch**: Launch `ultraplanner` agent (replaces separate planner + researcher):
 
 ```
-Task(
+Agent(
   subagent_type="ultraplanner",
   prompt="Full-cycle pipeline — Stage 1+2 (PlanResearch).
 Read BUILD_PLAN.md for the task: [task description].
@@ -50,8 +50,10 @@ One codebase scan, two outputs."
 3c. **Auto-Classification** — Read `## Complexity` from `tasks/next-ticket.md`:
 
 - **`low`** → Switch to standard flow. Update pipeline-state `Tier: standard`. Run remaining standard stages (S2-S5): UI Design → Dev → ReviewFix → QA. Then mark complete. No verify gate.
-- **`medium`** → Continue full pipeline but **skip Stage 11 (Hacker)**. Update pipeline-state `Tier: full-cycle (medium)`.
-- **`high`** → Full 12 stages. Update pipeline-state `Tier: full-cycle (high)`.
+- **`medium`** → Continue full pipeline but **skip Stage 11 (Hacker)**. Keep `Tier: full-cycle`; record `Complexity: medium — Stage 11 skipped` in `Notes:`.
+- **`high`** → Full 12 stages. Keep `Tier: full-cycle`; record `Complexity: high` in `Notes:`.
+
+`Tier:` is validated by `scripts/pipeline_status.py --check` and accepts only the bare tier name, so complexity and skipped stages always live in `Notes:` — which is where a resumed run (`/from`, session start) reads them.
 
 3d. **Read Feature Type** from `tasks/next-ticket.md`:
 
@@ -59,7 +61,7 @@ One codebase scan, two outputs."
 - `backend-only` → Skip UI Design (3) and UX (8). Run other stages at full depth.
 - `full-stack` → All stages at full depth (default).
 
-4. **Run stages in order** (for medium/high complexity), using the Task tool to launch each agent:
+4. **Run stages in order** (for medium/high complexity), using the Agent tool to launch each agent:
 
    | Block | Stage | Agent                 | Prompt includes                                                    | Notes                               |
    | ----- | ----- | --------------------- | ------------------------------------------------------------------ | ----------------------------------- |
@@ -82,14 +84,13 @@ One codebase scan, two outputs."
    Never skip a stage on a risk-sensitive surface, and never because the run
    feels long.
 
-   **Parallel execution (Block D)**: Launch Stages 9 and 10 as two Task tool calls in the SAME message. Wait for both to complete, then git commit both results together.
+   **Parallel execution (Block D)**: Launch Stages 9 and 10 as two Agent tool calls in the SAME message. Wait for both to complete, then git commit both results together.
 
    **Note**: Review+Fix (stages 5+6) stay SEPARATE for medium/high complexity — better audit trail for complex tasks.
 
 5. **After each stage** (or block):
    - Update `tasks/pipeline-state.md` with next stage
    - Git commit: `git add -A && git commit -m "stage N (<agent>): <description>"`
-   - Check context — if running low, save state and STOP
 
 6. **After Stage 12**:
    - **If SHIP** → mark task `[x]` in BUILD_PLAN.md, set pipeline-state to COMPLETE

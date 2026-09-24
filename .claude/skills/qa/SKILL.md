@@ -9,14 +9,12 @@ Run the ultraqa agent for comprehensive test coverage.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/next-ticket.md` for acceptance criteria and edge cases
-   - Read `tasks/dev-done.md` for what was implemented
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultraqa agent** via the Task tool:
+2. **Launch the ultraqa agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultraqa",
      prompt="You are running Stage 7 (QA) of the pipeline.
 

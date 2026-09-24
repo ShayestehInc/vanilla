@@ -47,7 +47,7 @@ Your job: Review the architecture of implemented code and ensure it follows esta
 - Foreign keys with appropriate ON DELETE?
 - No N+1 query patterns?
 - Relationships modeled correctly?
-- Group FK on all client-scoped data?
+- Tenant FK on all tenant-scoped data?
 
 ### API Design
 

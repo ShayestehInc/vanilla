@@ -9,14 +9,12 @@ Run the ultrahacker agent for chaos testing and bug hunting.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/dev-done.md` for what was implemented
-   - Read `tasks/next-ticket.md` for feature context
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultrahacker agent** via the Task tool:
+2. **Launch the ultrahacker agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultrahacker",
      prompt="You are running Stage 11 (Hacker) of the pipeline.
 
@@ -24,7 +22,7 @@ Run the ultrahacker agent for chaos testing and bug hunting.
    Read tasks/next-ticket.md for the feature requirements.
    Hunt for: dead UI, visual bugs, logic bugs, race conditions, missing states.
    Test at 375px and 1024px viewports.
-   FIX what you find — don't just report.
+   Fix what you find — don't just report.
    Suggest product improvements.
    Run tests after fixes.
    Write your report to tasks/hacker-report.md.

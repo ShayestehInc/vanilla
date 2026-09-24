@@ -9,13 +9,12 @@ Run the ultrasecurity agent for comprehensive security audit.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/dev-done.md` for list of changed files
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultrasecurity agent** via the Task tool:
+2. **Launch the ultrasecurity agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultrasecurity",
      prompt="You are running Stage 9 (Security) of the pipeline.
 
@@ -23,7 +22,7 @@ Run the ultrasecurity agent for comprehensive security audit.
    Audit ALL changed files for security vulnerabilities.
    Also scan the ENTIRE codebase for secrets (API keys, tokens, passwords).
    Check: injection, auth/authz, IDOR, data exposure, CORS/CSRF, dependencies, third-party webhook signature validation.
-   FIX all critical and high issues — don't just report.
+   Fix all critical and high issues — don't just report.
    Run tests after fixes.
    Write your audit to tasks/security-audit.md.
 

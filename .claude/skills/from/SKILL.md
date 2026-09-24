@@ -57,11 +57,13 @@ Resume or start the pipeline from a specific stage, running through to the final
    - If `Tier:` field exists in pipeline-state → use that tier's stage map
    - If stage name is `plan-research` or `reviewfix` → use standard tier
    - If no tier specified and stage name matches full-cycle → default to full-cycle
-   - Old stage names (`plan`, `research`, `review`, `fix`) always default to full-cycle tier
+   - `plan`, `research`, `review` and `fix` with no `Tier:` → full-cycle tier
 4. **Map to stage number** using the appropriate tier's table
 5. **Update pipeline state** to the starting stage
 6. **Run all stages from N through the final stage** of the tier:
-   - For each stage: launch the corresponding agent via Task tool
+   - For each stage: launch the corresponding agent via Agent tool
+   - Skip any stage the state file's `Notes:` records as skipped (e.g. Stage 11 for
+     `Complexity: medium`), and the conditional stages whose surface isn't touched
    - After each stage: update pipeline-state.md, git commit
    - Pass appropriate artifacts to each agent (see `/full-cycle` or `/standard` for the artifact chain)
 7. **At final stage**: Handle completion as per the tier's rules:

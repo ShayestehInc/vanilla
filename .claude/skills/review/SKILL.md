@@ -9,14 +9,12 @@ Run the ultrareview agent for comprehensive code review.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/next-ticket.md` for acceptance criteria
-   - Read `tasks/dev-done.md` for list of changed files
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultrareview agent** via the Task tool:
+2. **Launch the ultrareview agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultrareview",
      prompt="You are running Stage 5 (Review) of the pipeline.
 

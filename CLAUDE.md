@@ -84,8 +84,9 @@ uncertain, state the risk and use the full lane.
 5. After each stage: update `tasks/pipeline-state.md`, git commit.
 6. **Quality gate** depends on tier — Quick: report after Fix. Standard: QA is
    the gate. Full Cycle: Stage 12 (Verify) returns SHIP or NO-SHIP.
-7. **Context management**: after each stage, check context usage. If low: save
-   state, git commit, STOP. The user types `continue` to resume.
+7. **Durable state**: step 5's per-stage state update and commit are what make a
+   run resumable — the session's context is compacted automatically, so keep
+   going; if the session does end, the next one resumes from the state file.
 
 ---
 
@@ -191,10 +192,10 @@ python scripts/archive_artifacts.py --slug <kebab-case-run-name>
 
 ## Agent Orchestration
 
-Each stage delegates to its specialized agent via the Task tool:
+Each stage delegates to its specialized agent via the Agent tool:
 
 ```
-Task(subagent_type="<agent-name>", prompt="<stage instructions + context>")
+Agent(subagent_type="<agent-name>", prompt="<stage instructions + context>")
 ```
 
 **Pass to every agent:** the current task description (from

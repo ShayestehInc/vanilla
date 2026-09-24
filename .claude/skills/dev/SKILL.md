@@ -9,22 +9,19 @@ Run the ultradev agent for full feature implementation.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/next-ticket.md` for acceptance criteria
-   - Read `tasks/research-report.md` for codebase patterns
-   - Read `tasks/ui-design.md` for component designs
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultradev agent** via the Task tool:
+2. **Launch the ultradev agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultradev",
      prompt="You are running Stage 4 (Dev) of the pipeline.
 
    Read tasks/next-ticket.md for the full implementation ticket.
    Read tasks/research-report.md for codebase analysis and patterns.
    Read tasks/ui-design.md for UI component designs.
-   Implement the feature COMPLETELY — production-ready, zero TODOs.
+   Implement the feature completely — production-ready, zero TODOs.
    Write your summary to tasks/dev-done.md.
 
    Follow all instructions in your agent prompt."

@@ -17,40 +17,51 @@ Run a minimal 3-stage loop for fast iteration.
 
 1. **Verify prerequisites**:
    - `tasks/next-ticket.md` must exist — if not, run `/plan` first
-   - Read `tasks/pipeline-state.md` for context
+   - Read `tasks/pipeline-state.md` for context, then initialize it:
+     ```
+     # Pipeline State
+     Task: [task name]
+     Tier: quick
+     Stage: 1
+     Agent: ultradev
+     Last Updated: [now]
+     Notes: Starting quick pipeline
+     ```
+     The quick tier numbers its own stages 1–3 (Dev, Review, Fix) — the numbers
+     `scripts/pipeline_status.py` validates and `/from` maps.
 
-2. **Run Stage 4 (Dev)**: Launch the ultradev agent
+2. **Run Stage 1 (Dev)**: Launch the ultradev agent
    ```
-   Task(
+   Agent(
      subagent_type="ultradev",
-     prompt="Quick pipeline — Stage 4 (Dev).
+     prompt="Quick pipeline — Stage 1 (Dev).
    Read tasks/next-ticket.md. Implement the feature completely.
    Write summary to tasks/dev-done.md."
    )
    ```
-   - Git commit after completion
+   - Advance `Stage:`/`Agent:` in `tasks/pipeline-state.md`, then git commit
 
-3. **Run Stage 5 (Review)**: Launch the ultrareview agent
+3. **Run Stage 2 (Review)**: Launch the ultrareview agent
    ```
-   Task(
+   Agent(
      subagent_type="ultrareview",
-     prompt="Quick pipeline — Stage 5 (Review).
+     prompt="Quick pipeline — Stage 2 (Review).
    Read tasks/next-ticket.md and tasks/dev-done.md.
    Review all changed files. Write findings to tasks/review-findings.md."
    )
    ```
-   - Git commit after completion
+   - Advance `Stage:`/`Agent:` in `tasks/pipeline-state.md`, then git commit
 
-4. **Run Stage 6 (Fix)**: Launch the ultrafix agent
+4. **Run Stage 3 (Fix)**: Launch the ultrafix agent
    ```
-   Task(
+   Agent(
      subagent_type="ultrafix",
-     prompt="Quick pipeline — Stage 6 (Fix).
+     prompt="Quick pipeline — Stage 3 (Fix).
    Read tasks/review-findings.md. Fix all critical and major issues.
    Run tests. Update tasks/dev-done.md."
    )
    ```
-   - Git commit after completion
+   - Set `Stage: COMPLETE` in `tasks/pipeline-state.md`, then git commit
 
 5. **Report** summary: what was built, review score, fixes applied, test results.
 

@@ -9,14 +9,12 @@ Run the ultraarch agent for architecture review.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/dev-done.md` for what was implemented
-   - Read `PRODUCT_SPEC.md` for product roadmap context
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultraarch agent** via the Task tool:
+2. **Launch the ultraarch agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultraarch",
      prompt="You are running Stage 10 (Arch) of the pipeline.
 

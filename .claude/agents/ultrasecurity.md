@@ -44,9 +44,9 @@ Trace ALL user input paths:
 ### 3. AUTH & AUTHZ
 
 - Every API endpoint requires authentication (check `permission_classes`)
-- Permission checks correct for each role (admin, manager, rep, client, monitor)
-- Client isolation (`TenantIsolationMixin`) enforced on ALL data-access
-  endpoints; `ActorScopeMixin` composed **after** it on rep-facing
+- Permission checks correct for each role the project defines
+- Tenant isolation (`TenantIsolationMixin`) enforced on ALL data-access
+  endpoints; `ActorScopeMixin` composed **after** it on restricted-persona
   ones; the companion scope permission class where a mixin can't be composed
 - Token handling secure (httpOnly cookies, no localStorage for sensitive tokens)
 - Session management proper (expiry, rotation, invalidation)

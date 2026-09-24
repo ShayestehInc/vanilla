@@ -94,8 +94,8 @@ Two rules are **mechanically enforced** — you cannot narrate past them, CI fai
 
 - `scripts/check_code_size.py` — added file over 400 lines, new Python function
   over 50 lines, or editing a function already over 50. Run it before you finish.
-- `scripts/check_isolation.py` — a viewset you add or touch whose model carries a
-  `client` FK must compose `TenantIsolationMixin`. Run it before you finish.
+- `scripts/check_isolation.py` — a viewset you add or touch whose model carries the
+  tenant FK must compose the tenant isolation mixin (names per `CLAUDE.md`). Run it before you finish.
 
 ## ISOLATION AXES (read before writing any data endpoint)
 

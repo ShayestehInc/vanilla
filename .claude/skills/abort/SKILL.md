@@ -13,6 +13,7 @@ Gracefully stop the running pipeline and save state for later resumption.
    ```
    # Pipeline State
    Task: [current task name]
+   Tier: [current tier — unchanged]
    Stage: [current stage number]
    Agent: [agent that should run next]
    Last Updated: [now]

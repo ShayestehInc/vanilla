@@ -9,21 +9,19 @@ Run the ultraux agent for UX audit and polish.
 
 ## Steps
 
-1. **Read inputs**:
-   - Read `tasks/next-ticket.md` for UX requirements
-   - Read `tasks/ui-design.md` for design specifications
-   - Read `tasks/pipeline-state.md` for context
+1. **Read `tasks/pipeline-state.md`** for the task name — the agent reads the
+   stage artifacts itself, so don't pre-read them here.
 
-2. **Launch the ultraux agent** via the Task tool:
+2. **Launch the ultraux agent** via the Agent tool:
    ```
-   Task(
+   Agent(
      subagent_type="ultraux",
      prompt="You are running Stage 8 (UX) of the pipeline.
 
    Read tasks/next-ticket.md for UX requirements.
    Read tasks/ui-design.md for design specifications.
    Audit all UI code for this feature: states, copy, accessibility, consistency, responsiveness.
-   IMPLEMENT fixes — don't just report.
+   Implement fixes — don't just report.
    Run tests after changes.
    Write your audit to tasks/ux-audit.md.
 
